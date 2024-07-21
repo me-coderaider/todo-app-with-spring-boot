@@ -101,7 +101,10 @@ function WelcomeComponent() {
 	return (
 		<div className="WelcomeComponent">
 			<h1>Welcome {usernameVariable}</h1>
-			<div>Welcome Component</div>
+			<div>
+				Your todos
+				<a href="/todos">Todos</a>
+			</div>
 		</div>
 	);
 }
@@ -116,18 +119,32 @@ function ErrorComponent() {
 }
 
 function ListTodosComponent() {
+	const today = new Date();
+
+	const targetDate = new Date(
+		today.getFullYear() + 1,
+		today.getMonth(),
+		today.getDate()
+	);
+
 	const todos = [
 		{
 			id: 1,
 			description: "Learn SpringBoot",
+			done: false,
+			targetDate: targetDate,
 		},
 		{
 			id: 2,
 			description: "Learn Nginx",
+			done: false,
+			targetDate: targetDate,
 		},
 		{
 			id: 3,
 			description: "Remember DesignPatterns",
+			done: false,
+			targetDate: targetDate,
 		},
 	];
 
@@ -138,8 +155,10 @@ function ListTodosComponent() {
 				<table>
 					<thead>
 						<tr>
-							<td>id</td>
-							<td>description</td>
+							<td>Id</td>
+							<td>Description</td>
+							<td>Is done?</td>
+							<td>Target Date</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -147,6 +166,8 @@ function ListTodosComponent() {
 							<tr key={todo.id}>
 								<td>{todo.id}</td>
 								<td>{todo.description}</td>
+								<td>{todo.done}</td>
+								<td>{todo.targetDate.toDateString()}</td>
 							</tr>
 						))}
 					</tbody>
