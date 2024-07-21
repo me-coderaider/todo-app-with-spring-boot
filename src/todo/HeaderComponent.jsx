@@ -7,7 +7,7 @@ function HeaderComponent() {
 	// console.log(authContext.number);
 
 	function logout() {
-		authContext.setAuthenticated(false);
+		authContext.logout();
 	}
 
 	return (

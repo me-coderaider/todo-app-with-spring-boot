@@ -12,8 +12,22 @@ export default function ({ children }) {
 
 	const [isAuthenticated, setAuthenticated] = useState(false);
 
+	function login(username, password) {
+		if (username === "coderaider" && password === "dummy") {
+			setAuthenticated(true);
+			return true;
+		} else {
+			setAuthenticated(false);
+			return false;
+		}
+	}
+
+	function logout() {
+		setAuthenticated(false);
+	}
+
 	return (
-		<AuthContext.Provider value={{ isAuthenticated, setAuthenticated }}>
+		<AuthContext.Provider value={{ isAuthenticated, login, logout }}>
 			{children}
 		</AuthContext.Provider>
 	);
