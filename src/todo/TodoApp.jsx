@@ -19,6 +19,8 @@ export default function TodoApp() {
 						path="/welcome/:usernameVariable"
 						element={<WelcomeComponent />}
 					></Route>
+					<Route path="/todos" element={<ListTodosComponent />}></Route>
+
 					<Route path="*" element={<ErrorComponent />}></Route>
 				</Routes>
 			</BrowserRouter>
@@ -109,6 +111,47 @@ function ErrorComponent() {
 		<div className="ErrorComponent">
 			<h1>Apologies for the 404.</h1>
 			<h2>Reach out to our team at abc@cdf.com</h2>
+		</div>
+	);
+}
+
+function ListTodosComponent() {
+	const todos = [
+		{
+			id: 1,
+			description: "Learn SpringBoot",
+		},
+		{
+			id: 2,
+			description: "Learn Nginx",
+		},
+		{
+			id: 3,
+			description: "Remember DesignPatterns",
+		},
+	];
+
+	return (
+		<div className="ListTodosComponent">
+			<h1>Things you want to do!</h1>
+			<div>
+				<table>
+					<thead>
+						<tr>
+							<td>id</td>
+							<td>description</td>
+						</tr>
+					</thead>
+					<tbody>
+						{todos.map((todo) => (
+							<tr key={todo.id}>
+								<td>{todo.id}</td>
+								<td>{todo.description}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	);
 }
