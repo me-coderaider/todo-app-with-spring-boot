@@ -5,6 +5,7 @@ import {
 	Route,
 	useNavigate,
 	useParams,
+	Link,
 } from "react-router-dom";
 import "./TodoApp.css";
 
@@ -102,8 +103,8 @@ function WelcomeComponent() {
 		<div className="WelcomeComponent">
 			<h1>Welcome {usernameVariable}</h1>
 			<div>
-				Your todos
-				<a href="/todos">Todos</a>
+				Manage your todos
+				<Link to="/todos">Todos</Link>
 			</div>
 		</div>
 	);
@@ -166,7 +167,7 @@ function ListTodosComponent() {
 							<tr key={todo.id}>
 								<td>{todo.id}</td>
 								<td>{todo.description}</td>
-								<td>{todo.done}</td>
+								<td>{todo.done.toString()}</td>
 								<td>{todo.targetDate.toDateString()}</td>
 							</tr>
 						))}
