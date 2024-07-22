@@ -1,13 +1,4 @@
-import { useState } from "react";
-import {
-	BrowserRouter,
-	Routes,
-	Route,
-	useNavigate,
-	useParams,
-	Link,
-	Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LogoutComponent from "./LogoutComponent";
 import HeaderComponent from "./HeaderComponent";
 import FooterComponent from "./FooterComponent";

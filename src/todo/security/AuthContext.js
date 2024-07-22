@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 // 2. Share the created context with other components
-export default function ({ children }) {
+export default function AuthProvider({ children }) {
 	// 3. Put some state in context
 	// const [number, setNumber] = useState(0);
 
