@@ -4,9 +4,13 @@ import {
 	retrieveAllTodosForUsernameApi,
 } from "./api/TodoApiService";
 import { getValue } from "@testing-library/user-event/dist/utils";
+import { useAuth } from "./security/AuthContext";
 
 function ListTodosComponent() {
 	const today = new Date();
+
+	const authContext = useAuth();
+	const username = authContext.username;
 
 	const targetDate = new Date(
 		today.getFullYear() + 1,
@@ -20,14 +24,14 @@ function ListTodosComponent() {
 	useEffect(() => refreshTodos(), []);
 
 	function refreshTodos() {
-		retrieveAllTodosForUsernameApi("coderaider")
+		retrieveAllTodosForUsernameApi(username)
 			.then((response) => setTodos(response.data))
 			.catch((error) => console.log(error));
 	}
 
 	function deleteTodo(id) {
 		console.log("delete todo", id);
-		deleteTodoApi("coderaider", id)
+		deleteTodoApi(username, id)
 			.then(
 				() => {
 					setMessage(`Delete of todo with id= ${id} successful.`);
