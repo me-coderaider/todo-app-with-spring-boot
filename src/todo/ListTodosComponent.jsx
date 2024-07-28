@@ -33,7 +33,6 @@ function ListTodosComponent() {
 	}
 
 	function deleteTodo(id) {
-		console.log("delete todo", id);
 		deleteTodoApi(username, id)
 			.then(
 				() => {
@@ -47,8 +46,11 @@ function ListTodosComponent() {
 	}
 
 	function updateTodo(id) {
-		console.log("update todo", id);
 		navigate(`/todo/${id}`);
+	}
+
+	function addNewTodo() {
+		navigate(`/todo/-1`);
 	}
 
 	// const todos = [
@@ -113,6 +115,9 @@ function ListTodosComponent() {
 						))}
 					</tbody>
 				</table>
+				<div className="btn btn-success m-3" onClick={addNewTodo}>
+					Add New Todo
+				</div>
 			</div>
 		</div>
 	);
