@@ -5,12 +5,15 @@ import {
 } from "./api/TodoApiService";
 import { getValue } from "@testing-library/user-event/dist/utils";
 import { useAuth } from "./security/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function ListTodosComponent() {
 	const today = new Date();
 
 	const authContext = useAuth();
 	const username = authContext.username;
+
+	const navigate = useNavigate();
 
 	const targetDate = new Date(
 		today.getFullYear() + 1,
@@ -41,6 +44,11 @@ function ListTodosComponent() {
 				//2. Update Todos List
 			)
 			.catch((error) => console.log(error));
+	}
+
+	function updateTodo(id) {
+		console.log("update todo", id);
+		navigate(`/todo/${id}`);
 	}
 
 	// const todos = [
@@ -76,6 +84,7 @@ function ListTodosComponent() {
 							<th>Is done?</th>
 							<th>Target Date</th>
 							<th>Delete</th>
+							<th>Update</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -90,6 +99,14 @@ function ListTodosComponent() {
 										onClick={() => deleteTodo(todo.id)}
 									>
 										Delete
+									</button>
+								</td>
+								<td>
+									<button
+										className="btn btn-success"
+										onClick={() => updateTodo(todo.id)}
+									>
+										Update
 									</button>
 								</td>
 							</tr>
