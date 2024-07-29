@@ -1,9 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import { retrieveHelloWorldBeanPathVariable } from "./api/HelloWorldApiService";
 import { useState } from "react";
+import { useAuth } from "./security/AuthContext";
 
 function WelcomeComponent() {
 	const { usernameVariable } = useParams();
+
+	const authContext = useAuth();
+	const token = authContext.token;
 
 	const [message, setMessage] = useState(null);
 
@@ -21,7 +25,7 @@ function WelcomeComponent() {
 		// 	.catch((error) => errorResponse(error))
 		// 	.finally(() => console.log("clean up"));
 
-		retrieveHelloWorldBeanPathVariable("Pankajj")
+		retrieveHelloWorldBeanPathVariable("Pankaj1", token)
 			.then((response) => successfulResponse(response))
 			.catch((error) => errorResponse(error))
 			.finally(() => console.log("clean up"));
